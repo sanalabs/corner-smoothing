@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["dom"],
+    
+    "module": "esnext",
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "dist/types",
+    "outDir": "dist/esm",
+
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+
+    "strict": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "forceConsistentCasingInFileNames": true,
+    "exactOptionalPropertyTypes": false, // Not compatible with figma-squircle
+    "noUncheckedIndexedAccess": true,
+    "downlevelIteration": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "incremental": true,
+    "jsx": "react"
+  },
+  "include": ["src"],
+}
