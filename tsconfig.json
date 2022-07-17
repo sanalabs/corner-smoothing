@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": ["dom"],
+    "lib": ["dom", "dom.iterable"],
     
     "module": "esnext",
     "declaration": true,
@@ -20,7 +20,7 @@
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
     "forceConsistentCasingInFileNames": true,
-    "exactOptionalPropertyTypes": false, // Not compatible with figma-squircle
+    "exactOptionalPropertyTypes": true, // Not compatible with figma-squircle
     "noUncheckedIndexedAccess": true,
     "downlevelIteration": true,
     "isolatedModules": true,
