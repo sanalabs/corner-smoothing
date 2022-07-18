@@ -1,10 +1,18 @@
-# Corner smoothing (Squircle) for the web
+# Corner smoothing
 
-Apply corner smoothing to render squircles.
+Squircles for the web.
 
-[Live demo](TODO)
+Supports filled squircles and border quircles. Supports React and vanilla js. Works for all components/HTML elements.
 
-## React component `Squircle`
+The corner smoothing is the same as the [Figma corner smoothing](https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing) through the use of [figma-squircle](https://github.com/tienphaw/figma-squircle).
+
+The implementation uses [`clip-path`](https://developer.mozilla.org/en-US/docs/Web/CSS/clip-path), so user interactions such as hover follows the smooth corners.
+
+[**Live demo.**](https://stackblitz.com/github/sanalabs/corner-smoothing/tree/main/example?file=pages%2Findex.tsx)
+
+<img src="https://raw.githubusercontent.com/sanalabs/corner-smoothing/main/example/demo.png" width="391" />
+
+## React component
 
 ```tsx
 import { Squircle } from 'corner-smoothing'
@@ -15,33 +23,60 @@ import { Squircle } from 'corner-smoothing'
     padding: '1rem 1.25rem',
     backgroundColor: '#7c3aed',
     color: '#fff',
+    display: 'inline-block',
   }}
 >
   Lorem ipsum
 </Squircle>
 ```
 
-TODO image here
+<img src="https://raw.githubusercontent.com/sanalabs/corner-smoothing/main/example/demo-small-filled.png" width="142" />
 
-### `Squircle` props
+## Squircle border
 
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| `cornerRadius` | `number` | | Similar to the CSS property `border-radius`. |
-| `cornerSmoothing` | `number` | `1` | The degree of corner smoothing as a number in the range 0–1. 0 is equivalent to no smoothing and looks like normal `border-radius`. 1 indicates maximal smoothing. |
-| `preserveSmoothing` | `boolean` | `true` | Allow corner smoothing to work better on large rounded corners. |
-| `borderWidth` | `number` | `undefined` | If defined, the [border mode](#squircle-border) is used. |
-| `as` | `string \| ReactComponent` | `'div'` | The underlying component that `Squircle` will use. |
+A squircle border is created by rendering two squircles on top of each other. The inner one being smaller and centered in the outer. The border is the region where the outer squircle is not covered by the inner squircle. The inner squircle is rendered with the `::before` pseudo-element. The corner radius of the inner squircle is adjusted to follow the radius of the outer squircle to give the correct visuals.
 
-Optional props to override corner radius for individual corners.
+All this happens automatically. You just need to know that the border color is defined by `background-color` and that actual background color is defined by `background-color` on the `::before` pseudo-element. An added benefit of this is that the border can have a gradient.
 
-| Name | Type |
-| --- | --- |
-| `topLeftCornerRadius` | `number` |
-| `topRightCornerRadius` | `number` |
-| `bottomRightCornerRadius` | `number` |
-| `bottomLeftCornerRadius` | `number` |
+```tsx
+import { Squircle } from 'corner-smoothing'
+import styled from 'styled-components'
 
+const StyledSquircle = styled.div`
+  padding: 1rem 1.25rem;
+  display: inline-block;
+
+  /* Border color */
+  background: linear-gradient(45deg, #7c3aed, #ff1b6b);
+
+  ::before {
+    /* Background color  */
+    background: #fff;
+  }`
+
+// Create a Squircle with the `Squircle` component:
+<Squircle
+  cornerRadius={20}
+  borderWidth={1}
+  as={StyledSquircle}
+>
+  Lorem ipsum
+</Squircle>
+```
+
+<img src="https://raw.githubusercontent.com/sanalabs/corner-smoothing/main/example/demo-small-border.png" width="147" />
+
+## React HOC (higher-order component)
+
+```tsx
+import { squircle } from 'corner-smoothing'
+
+// Create a Squircle with the `squircle` HOC:
+const MySquircle = squircle(StyledSquircle, {
+  cornerRadius: 20,
+  borderWidth: 1
+})
+```
 
 ## Vanilla function
 
@@ -71,48 +106,24 @@ renderSquircle(options)
 
 The options are the same as for the React component, excluding the `as` property.
 
-## Squircle border
+### Options
 
-TODO
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| `cornerRadius` | `number` | | Similar to the CSS property `border-radius`. |
+| `cornerSmoothing` | `number` | `1` | The degree of corner smoothing as a number in the range 0–1. 0 is equivalent to no smoothing and looks like normal `border-radius`. 1 indicates maximal smoothing. |
+| `preserveSmoothing` | `boolean` | `true` | Allow corner smoothing to work better on large rounded corners. |
+| `borderWidth` | `number` | `undefined` | If defined, the [border mode](#squircle-border) is used. |
+| `as` | `string \| ReactComponent` | `'div'` | The underlying component that `Squircle` will use. *Only available for the `Squircle` React component*. |
 
-A squircle border is created by rendering two squircles on top of each other. The inner one being smaller and centered in the outer. The visual border is the region where the outer squircle is not covered by the inner squircle. The inner squircle is rendered with the `::before` pseudo-element.
+Optional props to override corner radius for individual corners.
 
-
-```tsx
-import { Squircle, squircle } from 'corner-smoothing'
-import styled from 'styled-components'
-
-const StyledSquircle = styled.div`
-  padding: 1rem 1.25rem;
-  background-color: #7c3aed; /* Border color */
-
-  ::before {
-    background-color: #fff; /* Background color  */
-  }
-`
-
-// Create a Squircle with the `Squircle` component:
-<Squircle
-  cornerRadius={20}
-  borderWidth={1}
-  as={StyledSquircle}
->
-  Lorem ipsum
-</Squircle>
-
-
-// Create a Squircle with the `squircle` HOC:
-const MySquircle = squircle(StyledSquircle, {
-  cornerRadius: 20,
-  borderWidth: 1
-})
-```
-
-## Details
-
-* Uses [TODO](https://github.com/tienphaw/figma-squircle) under the hood.
-* [TODO](https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing)
-* [TODO](https://www.figma.com/blog/desperately-seeking-squircles/)
+| Name | Type |
+| --- | --- |
+| `topLeftCornerRadius` | `number` |
+| `topRightCornerRadius` | `number` |
+| `bottomRightCornerRadius` | `number` |
+| `bottomLeftCornerRadius` | `number` |
 
 ## Developing
 
@@ -128,7 +139,7 @@ yarn watch
 # Other terminal
 cd example
 yarn
-yalc link auto-text-size
+yalc link corner-smoothing
 yarn dev
 ```
 
@@ -139,7 +150,7 @@ Using `yalc link` (or `yalc add--link`) makes it so that Next.js HMR detects upd
 ### Publishing
 
 ```sh
-# Edit package.json to bump the version number
+# Update version number
 yarn clean && yarn build
 npm publish
 ```

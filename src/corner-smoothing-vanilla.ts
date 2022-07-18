@@ -21,9 +21,7 @@ const createClassName = (length: number = 8): string => {
   return `squircle-${result}`;
 };
 
-const setCss = (css: string, className: string): void => {
-  const styleId = `style-${className}`;
-
+const setCss = (css: string, styleId: string): void => {
   let styleEl = document.getElementById(styleId);
 
   if (!styleEl) {
@@ -32,7 +30,7 @@ const setCss = (css: string, className: string): void => {
     document.head.appendChild(styleEl);
   }
 
-  styleEl.textContent = css.replace(/&/g, `.${className}`);
+  styleEl.textContent = css;
 };
 
 export const renderSquircle = (
@@ -58,12 +56,12 @@ export const renderSquircle = (
 
     setCss(
       `
-        & {
+        .${className} {
           position: relative;
           clip-path: path('${getSvgPath(augmentedOpts)}');
         }
 
-        &::before {
+        .${className}::before {
           content: '';
           display: block;
           position: absolute;
@@ -77,7 +75,7 @@ export const renderSquircle = (
           })}');
         }
       `,
-      className
+      `style-${className}`
     );
   }
 };
@@ -117,6 +115,7 @@ export const squircleObserver = (el: HTMLElement, opts: Options) => {
   // https://stackoverflow.com/a/9678166/19306180
   func.disconnect = () => {
     el.classList.remove(className);
+    document.querySelector(`#style-${className}`)?.remove();
     resizeObserver.disconnect();
   };
 

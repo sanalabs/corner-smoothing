@@ -2,12 +2,14 @@ import { useState } from "react";
 import { Squircle, squircle } from "corner-smoothing";
 import styled from "styled-components";
 
+const boxWidth = "max(20vw, 150px)";
+
 // Styling a Squircle can be done in any way, it doesn't have to be with
 // styled-components. This is just to demonstrate.
 const FilledBox = styled.div`
   background: linear-gradient(45deg, #7c3aed, #ff1b6b);
   color: #fff;
-  width: max(20vw, 150px);
+  width: ${boxWidth};
   padding: 0.5rem;
   height: 75px;
   display: flex;
@@ -16,7 +18,7 @@ const FilledBox = styled.div`
   text-align: center;
 
   :hover {
-    background-color: #8b5cf6;
+    background: linear-gradient(45deg, #7c3aedee, #ff1b6bee);
   }
 `;
 
@@ -29,9 +31,9 @@ const Row = styled.div`
 `;
 
 const BorderBoxNormal = styled.div`
-  background-color: #fff;
+  background: #fff;
   color: #333;
-  width: max(20vw, 150px);
+  width: ${boxWidth};
   height: 75px;
   padding: 0.5rem;
   display: flex;
@@ -42,14 +44,14 @@ const BorderBoxNormal = styled.div`
   border-style: solid;
 
   :hover {
-    background-color: #f7f1ff;
+    background: #fcfaff;
   }
 `;
 
 const BorderBox = styled.div`
   background: linear-gradient(45deg, #7c3aed, #ff1b6b);
   color: #333;
-  width: max(20vw, 150px);
+  width: ${boxWidth};
   height: 75px;
   padding: 0.5rem;
   display: flex;
@@ -58,19 +60,20 @@ const BorderBox = styled.div`
   text-align: center;
 
   ::before {
-    background-color: #fff;
+    background: #fff;
   }
 
   :hover::before {
-    background-color: #f7f1ff;
+    background: #fcfaff;
   }
 `;
 
 const Container = styled.div`
-  background-color: #f2f2f0;
+  background: #f2f2f0;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   height: 100%;
 `;
 
@@ -81,7 +84,7 @@ const ShadowWrapper = styled.div`
 const StyledContainerBox = styled.div`
   display: inline-block;
   padding: 0 1rem;
-  background-color: #fff;
+  background: #fff;
 `;
 
 const ContainerBox = squircle(StyledContainerBox, {
@@ -98,6 +101,11 @@ export default function Page() {
 
   return (
     <Container>
+      <h3 style={{ marginBottom: "1.75rem", fontWeight: 500 }}>
+        Corner Smoothing. Squircles for the web. Read the{" "}
+        <a href="https://github.com/sanalabs/corner-smoothing#readme">docs</a>.
+      </h3>
+
       <ShadowWrapper>
         <ContainerBox>
           <table style={{ margin: "1rem auto 2rem" }}>
@@ -136,9 +144,7 @@ export default function Page() {
                     min={1}
                     max={50}
                     value={borderWidth2}
-                    onChange={(e) =>
-                      setBorderWidth2(parseInt(e.target.value))
-                    }
+                    onChange={(e) => setBorderWidth2(parseInt(e.target.value))}
                   />
                 </td>
                 <td style={{ width: "60px" }}>{borderWidth} px</td>
@@ -149,7 +155,7 @@ export default function Page() {
           <Row>
             <div
               style={{
-                width: "max(20vw, 150px)",
+                width: boxWidth,
                 textAlign: "center",
                 fontWeight: 500,
               }}
@@ -158,7 +164,7 @@ export default function Page() {
             </div>
             <div
               style={{
-                width: "max(20vw, 150px)",
+                width: boxWidth,
                 textAlign: "center",
                 fontWeight: 500,
               }}
