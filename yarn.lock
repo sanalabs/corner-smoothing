@@ -44,6 +44,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"corner-smoothing@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "corner-smoothing@workspace:."
+  dependencies:
+    "@types/node": 18.0.3
+    "@types/react": 18.0.15
+    figma-squircle: ^0.3.0
+    tsc-watch: ^5.0.3
+    typescript: 4.7.4
+  peerDependencies:
+    react: "*"
+  languageName: unknown
+  linkType: soft
+
 "cross-spawn@npm:^7.0.3":
   version: 7.0.3
   resolution: "cross-spawn@npm:7.0.3"
@@ -170,20 +184,6 @@ __metadata:
   checksum: 2e076634c9637cfdc54ab4387b6a243b8c33b360874a25adf6f327a5647f07cb3bf1c755d515248eb3afee4e382278d01f62c62d87263c118f28065b86f74f02
   languageName: node
   linkType: hard
-
-"squircle-todo@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "squircle-todo@workspace:."
-  dependencies:
-    "@types/node": 18.0.3
-    "@types/react": 18.0.15
-    figma-squircle: ^0.3.0
-    tsc-watch: ^5.0.3
-    typescript: 4.7.4
-  peerDependencies:
-    react: "*"
-  languageName: unknown
-  linkType: soft
 
 "stream-combiner@npm:~0.0.4":
   version: 0.0.4

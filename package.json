@@ -1,11 +1,12 @@
 {
-  "name": "squircle-todo",
+  "name": "corner-smoothing",
+  "description": "Corner smoothing (Squircle) for the web.",
   "version": "0.1.0",
   "license": "MIT",
-  "homepage": "https://github.com/sanalabs/squircle-todo#readme",
+  "homepage": "https://github.com/sanalabs/corner-smoothing#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sanalabs/squircle-todo.git"
+    "url": "https://github.com/sanalabs/corner-smoothing.git"
   },
   "author": "Viktor Qvarfordt",
   "main": "./dist/cjs/index.js",
