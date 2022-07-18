@@ -101,7 +101,7 @@ export default function Page() {
 
   return (
     <Container>
-      <h3 style={{ marginBottom: "1.75rem", fontWeight: 500 }}>
+      <h3 style={{ marginBottom: "1.75rem", padding: '0 1.75rem', fontWeight: 500 }}>
         Corner Smoothing. Squircles for the web. Read the{" "}
         <a href="https://github.com/sanalabs/corner-smoothing#readme">docs</a>.
       </h3>
