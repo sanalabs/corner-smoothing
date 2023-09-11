@@ -1,7 +1,7 @@
 {
   "name": "corner-smoothing",
   "description": "Squircles for the web.",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "MIT",
   "homepage": "https://github.com/sanalabs/corner-smoothing#readme",
   "repository": {
@@ -13,12 +13,9 @@
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
-    ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
-    },
-    "./types": "./dist/types/index.d.ts"
+    "import": "./dist/esm/index.js",
+    "require": "./dist/cjs/index.js",
+    "default": "./dist/esm/index.js"
   },
   "files": [
     "src/**/*",
